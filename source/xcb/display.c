@@ -29,13 +29,14 @@
 /** Log domain for this module */
 #define G_LOG_DOMAIN "X11Helper"
 
+#include <config.h>
+
 #ifdef XCB_IMDKIT
 #include <xcb-imdkit/encoding.h>
 #include <xcb/xcb_keysyms.h>
 #endif
 #include <cairo-xcb.h>
 #include <cairo.h>
-#include <config.h>
 #include <glib.h>
 #include <math.h>
 #include <stdint.h>

@@ -29,6 +29,7 @@
 #define G_LOG_DOMAIN "View"
 
 #include <config.h>
+
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
