@@ -666,7 +666,8 @@ void rofi_view_set_selected_line(RofiViewState *state,
     }
   }
   listview_set_selected(state->list_view, selected);
-  xcb_clear_area(xcb->connection, CacheState.main_window, 1, 0, 0, 1, 1);
+  // Clear the window and force an expose event resulting in a redraw.
+  xcb_clear_area(xcb->connection, 1, CacheState.main_window, 0, 0, 1, 1);
   xcb_flush(xcb->connection);
 }
 
