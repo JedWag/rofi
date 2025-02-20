@@ -146,11 +146,10 @@ static xcb_visualtype_t *lookup_visual(xcb_screen_t *s, xcb_visualid_t vis) {
  * website: http://macslow.thepimp.net. I'm not entirely sure he's proud of it,
  * but it has proved immeasurably useful for me. */
 
-static uint32_t *create_kernel(double radius, double deviation,
-                               uint32_t *sum2) {
-  int size = 2 * (int)(radius) + 1;
+static uint32_t *create_kernel(int radius, double deviation, uint32_t *sum2) {
+  int size = 2 * (radius) + 1;
   uint32_t *kernel = (uint32_t *)(g_malloc(sizeof(uint32_t) * (size + 1)));
-  double radiusf = fabs(radius) + 1.0;
+  double radiusf = abs(radius) + 1.0;
   double value = -radius;
   double sum = 0.0;
   int i;
@@ -174,7 +173,7 @@ static uint32_t *create_kernel(double radius, double deviation,
   return kernel;
 }
 
-void cairo_image_surface_blur(cairo_surface_t *surface, double radius,
+void cairo_image_surface_blur(cairo_surface_t *surface, int radius,
                               double deviation) {
   uint32_t *horzBlur;
   uint32_t *kernel = 0;

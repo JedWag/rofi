@@ -847,7 +847,7 @@ rofi_view_setup_fake_transparency(widget *win,
         cairo_destroy(dr);
         cairo_surface_destroy(s);
         if (blur > 0) {
-          cairo_image_surface_blur(CacheState.fake_bg, (double)blur, 0);
+          cairo_image_surface_blur(CacheState.fake_bg, blur, 0);
           TICK_N("BLUR");
         }
       }
