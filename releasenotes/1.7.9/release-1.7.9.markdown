@@ -1,5 +1,31 @@
 # 1.7.9
 
+## Custom commands on events
+
+Giomatfois62 added a nice feature that you can execute a custom command on different events.
+For example play a sound on moving around.
+
+This pull request addresses issue #2032, making it possible to execute custom user commands or scripts on a variety of rofi events. The following events are covered for now:
+
+See the rofi-actions(5) manpage for more information.
+
+## NVidia workaround workaround
+
+Because of oddness in nvidia drivers, we had an issue the whole screen turned
+black if we used the 'over' operator in cairo. Working around this caused some
+drawing issues with anti-aliasing. There now exists two flags to to work around
+this workaround again. Either disable the workaround, or disable anti-aliasing.
+
+## IMDKit runtime disable option
+
+Because IMDKit can break some keybindings, this can now be disabled at runtime.
+For example if you try to bind only the 'Super' key, this can fix this.
+
+## Smartcase support
+
+Thanks to Phanium, rofi now supports Vim style 'smartcase'. Can be enabled
+using `-case-smart`.
+
 ## Changelog
 
 * Add -imdkit config to toggle imdkit at runtime (#2124) (thx Amos Bird)
