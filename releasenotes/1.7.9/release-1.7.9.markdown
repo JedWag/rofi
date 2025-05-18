@@ -2,12 +2,12 @@
 
 ## Custom commands on events
 
-Giomatfois62 added a nice feature that you can execute a custom command on different events.
-For example play a sound on moving around.
+Giomatfois62 added a nice feature that allows you to execute a custom command
+on different events. For example play a sound when accepting an entry.
 
-This pull request addresses issue #2032, making it possible to execute custom user commands or scripts on a variety of rofi events. The following events are covered for now:
-
-See the rofi-actions(5) manpage for more information.
+See the
+[rofi-actions(5)](https://github.com/davatorium/rofi/blob/1.7.9/doc/rofi-actions.5.markdown)
+manpage for more information.
 
 ## NVidia workaround workaround
 
@@ -16,15 +16,37 @@ black if we used the 'over' operator in cairo. Working around this caused some
 drawing issues with anti-aliasing. There now exists two flags to to work around
 this workaround again. Either disable the workaround, or disable anti-aliasing.
 
+You can set these options per widget:
+
+```css
+widget {
+  border-disable-nvidia-workaround: true;
+  border-aa: false;
+}
+```
+
+It's recommended to set it globally.
+
+```css
+* {
+  border-disable-nvidia-workaround: true;
+  border-aa: false;
+}
+```
+
 ## IMDKit runtime disable option
 
 Because IMDKit can break some keybindings, this can now be disabled at runtime.
 For example if you try to bind only the 'Super' key, this can fix this.
 
+For more information, see issue: #2124
+
 ## Smartcase support
 
 Thanks to Phanium, rofi now supports Vim style 'smartcase'. Can be enabled
 using `-case-smart`.
+
+Fore more information, see issue: #2060
 
 ## Changelog
 
