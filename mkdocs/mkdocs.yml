@@ -23,6 +23,7 @@ nav:
     - Debugging: current/rofi-debugging.5.markdown
     - Keys: current/rofi-keys.5.markdown
     - Thumbnails: current/rofi-thumbnails.5.markdown
+    - Actions: current/rofi-actions.5.markdown
   - 1.7.8:
     - Rofi: 1.7.8/rofi.1.markdown 
     - Themes: 1.7.8/rofi-theme.5.markdown
