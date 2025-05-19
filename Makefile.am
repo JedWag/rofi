@@ -200,6 +200,8 @@ doc/rofi-debugging.5: doc/rofi-debugging.5.markdown
 	pandoc --standalone --to=man --lua-filter=$(top_srcdir)/doc/man_filter.lua -f markdown-tex_math_dollars -o ./$@ ./$<
 doc/rofi-dmenu.5: doc/rofi-dmenu.5.markdown
 	pandoc --standalone --to=man --lua-filter=$(top_srcdir)/doc/man_filter.lua -f markdown-tex_math_dollars -o ./$@ ./$<
+doc/rofi-actions.5: doc/rofi-actions.5.markdown
+	pandoc --standalone --to=man --lua-filter=$(top_srcdir)/doc/man_filter.lua -f markdown-tex_math_dollars -o ./$@ ./$<
 doc/rofi-keys.5: doc/rofi-keys.5.markdown
 	pandoc --standalone --to=man --lua-filter=$(top_srcdir)/doc/man_filter.lua -f markdown-tex_math_dollars -o ./$@ ./$<
 doc/rofi-script.5: doc/rofi-script.5.markdown
