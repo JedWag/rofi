@@ -7,10 +7,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        This fork follows the bug report template from upstream rofi with the obvious exception for Wayland-related issues.
-        Please do NOT report such issues to [upstream rofi](https://github.com/davatorium/rofi/discussions).
-
-        First read the [guidelines](https://github.com/lbonn/rofi/blob/next/.github/CONTRIBUTING.md)! This is not optional for any report. People must be able to understand the full context of the report when reading it, at any time.
+        First read the [guidelines](https://github.com/DaveDavenport/rofi/blob/next/.github/CONTRIBUTING.md)! This is not optional for any report. People must be able to understand the full context of the report when reading it, at any time.
 
         If you feel like you “it is simple and requires no explanation”, please
         consider you’re wrong and still fill the full report. Any report
@@ -93,14 +90,6 @@ body:
       label: "Additional information"
     validations:
       required: false
-  - type: checkboxes
-    id: wayland
-    attributes:
-      label: Using wayland display server protocol
-      description: I have checked and confirm that I am using [rofi with wayland support enabled](https://github.com/lbonn/rofi)
-      options:
-        - label: "Yes, I use rofi with wayland support"
-          required: true
   - type: checkboxes
     id: latestversion
     attributes:

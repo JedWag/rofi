@@ -1,19 +1,31 @@
 <p align="center">
-<a href="https://github.com/lbonn/rofi/issues"><img src="https://img.shields.io/github/issues/lbonn/rofi.svg"></a>
-<a href="https://img.shields.io/github/forks/lbonn/rofi.svg"><img src="https://img.shields.io/github/forks/lbonn/rofi.svg"></a>
-<a href="https://github.com/lbonn/rofi/stargazers"><img src="https://img.shields.io/github/stars/lbonn/rofi.svg"></a>
-<a href="https://github.com/lbonn/rofi/releases"><img src="https://img.shields.io/github/downloads/lbonn/rofi/total.svg"></a>
-<a href="https://github.com/lbonn/rofi/discussions"><img src="https://img.shields.io/badge/forum-online-green.svg"></a>
-<a href="https://repology.org/metapackage/rofi-wayland/versions"><img src="https://repology.org/badge/tiny-repos/rofi-wayland.svg"></a>
+<a href="https://github.com/davatorium/rofi/issues"><img src="https://img.shields.io/github/issues/davatorium/rofi.svg"></a>
+<a href="https://img.shields.io/github/forks/davatorium/rofi.svg"><img src="https://img.shields.io/github/forks/davatorium/rofi.svg"></a>
+<a href="https://github.com/davatorium/rofi/stargazers"><img src="https://img.shields.io/github/stars/davatorium/rofi.svg"></a>
+<a href="https://github.com/davatorium/rofi/releases"><img src="https://img.shields.io/github/downloads/davatorium/rofi/total.svg"></a>
+<a href="https://repology.org/metapackage/rofi/versions"><img src="https://repology.org/badge/tiny-repos/rofi.svg"></a>
 </p>
+
+**Please match the documentation and scripts to the version of rofi used**
+
+- [next version](https://github.com/davatorium/rofi)
+- [1.7.9](https://github.com/davatorium/rofi/tree/1.7.9)
+- [1.7.8](https://github.com/davatorium/rofi/tree/1.7.8)
+- [1.7.7](https://github.com/davatorium/rofi/tree/1.7.7)
+- [1.7.6](https://github.com/davatorium/rofi/tree/1.7.6)
+- [1.7.5](https://github.com/davatorium/rofi/tree/1.7.5)
+- [1.7.4](https://github.com/davatorium/rofi/tree/1.7.4)
+- [1.7.3](https://github.com/davatorium/rofi/tree/1.7.3)
+- [1.7.2](https://github.com/davatorium/rofi/tree/1.7.2)
+- [1.7.1](https://github.com/davatorium/rofi/tree/1.7.1)
+- [1.7.0](https://github.com/davatorium/rofi/tree/1.7.0)
+
+Also see the locally installed documentation (manpages).
 
 <h1 align="center"> Rofi </h1>
 <p align="center"><i>A window switcher, Application launcher and dmenu replacement</i>.</p>
 
 <https://user-images.githubusercontent.com/84911063/139428874-fe182dd6-82c6-49b8-8da1-920ddda3d1ed.mp4>
-
-**This is a fork of [Rofi](https://github.com/davatorium/rofi) with added support for Wayland via the [layer shell protocol](https://github.com/swaywm/wlr-protocols).**
-**For more information, see the [Wayland support section](#wayland-support)**
 
 **Rofi** started as a clone of simpleswitcher, written by [Sean
 Pringle](http://github.com/seanpringle/simpleswitcher) - a popup window
@@ -56,6 +68,7 @@ Rofi is not:
   - [Themes](#themes)
 - [Screenshots](#screenshots)
 - [Wiki](#wiki)
+- [Discussion places](#discussion-places)
 
 ## Features
 
@@ -137,7 +150,7 @@ Below is a list of the different modes:
 
 Please follow the [meson build instructions](INSTALL.md#meson) to build this fork, as autotools builds are not yet supported.
 
-Wayland support is enabled by default in this fork, along with X11/xcb.
+Wayland support is enabled by default, along with X11/xcb.
 
 rofi can also be built _without_ XCB:
 
@@ -163,7 +176,12 @@ Due to the different architecture and available APIs in Wayland mode, some origi
 
 ## Manpage
 
-For more up to date information, please see the manpages. The other sections and links might have outdated information as they have relatively less maintainance than the manpages. So, if you come across any issues please consult manpages, [discussion from upstream rofi](https://github.com/davatorium/rofi/discussions) and [issue tracker](https://github.com/lbonn/rofi/issues?q=) before filing new issue.
+For more up to date information, please see the manpages. The other sections
+and links might have outdated information as they have relatively less
+maintainance than the manpages. So, if you come across any issues please
+consult manpages, [discussion](https://github.com/davatorium/rofi/discussions)
+and [issue tracker](https://github.com/davatorium/rofi/issues?q=) before filing
+new issue.
 
 - Manpages:
   - [rofi](doc/rofi.1.markdown)
@@ -232,15 +250,18 @@ This creates a file called `config.rasi` in the `~/.config/rofi/` folder. You
 can modify this file to set configuration settings and modify themes.
 `config.rasi` is the file rofi looks to by default.
 
-Please see the [configuration guide](https://github.com/lbonn/rofi/blob/wayland/CONFIG.md) for a summary of configuration options. More detailed options are provided in the manpages.
+Please see the [configuration
+guide](https://github.com/davatorium/rofi/blob/next/CONFIG.md) for a summary of
+configuration options. More detailed options are provided in the manpages.
 
 ### Themes
 
-Please see the [themes manpages](https://github.com/lbonn/rofi/blob/wayland/doc/rofi-theme.5.markdown) for a detailed description.
-
+Please see the [themes
+manpages](https://github.com/davatorium/rofi/blob/next/doc/rofi-theme.5.markdown)
+for a detailed description.
 
 The latest bundled themes can be found
-[here](https://github.com/lbonn/rofi/tree/next/themes).
+[here](https://github.com/davatorium/rofi/tree/next/themes).
 
 ## Screenshots
 
@@ -258,10 +279,10 @@ Default theme:
 
 ## Wiki
 
-| ❗ **The upstream rofi Wiki is currently unmaintained and might contain outdated data** |
+| ❗ **The Wiki is currently unmaintained and might contain outdated data** |
 | --- |
 
-[Go to upstream rofi wiki](https://github.com/davatorium/rofi/wiki) .
+[Go to wiki](https://github.com/davatorium/rofi/wiki) .
 
 ### Contents
 
@@ -273,3 +294,15 @@ Default theme:
 - [Script mode](https://github.com/davatorium/rofi/wiki/rfc-script-mode)
 - [Creating an issue](https://github.com/davatorium/rofi/blob/master/.github/CONTRIBUTING.md)
 - [Creating a Pull request](https://github.com/davatorium/rofi/wiki/Creating-a-pull-request)
+
+## Discussion places
+
+The [GitHub Discussions](https://github.com/davatorium/rofi/discussions) is the
+preferred location for discussions.
+
+- [GitHub Discussions](https://github.com/davatorium/rofi/discussions)
+- IRC (#rofi on irc.libera.chat)
+
+### Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/davatorium/rofi.svg)](https://starchart.cc/davatorium/rofi)

@@ -61,7 +61,6 @@ Please create a new issue, if it is similar it will be marked duplicate.
 
 # Creating a feature request
 
-
 Before creating a feature request:
 
 * First check the *next* branch, to see if the feature has already been
@@ -78,7 +77,3 @@ If possible try to explain how you would expect to use feature.
 For example, should it be a configuration option or a hot-key.
 
 Requesting a feature is no guarantee it will be added.
-
-**Please check that you are using this fork when reporting Wayland bugs
-and do not report them to upstream Rofi,
-[here](https://github.com/DaveDavenport/rofi/wiki/Wayland) for more information.**

@@ -140,7 +140,7 @@ The GitHub Pages version of these directions may be out of date.  Please use
 If you don't have a checkout:
 
 ```bash
-    git clone --recursive https://github.com/lbonn/rofi
+    git clone --recursive https://github.com/DaveDavenport/rofi
     cd rofi/
 ```
 
@@ -258,34 +258,63 @@ For more information see the rofi-debugging(5) manpage.
 
 ## Install distribution
 
-<a href="https://repology.org/project/rofi-wayland/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/rofi-wayland.svg" alt="Packaging status" align="right">
-</a>
+### Debian or Ubuntu
 
-The wayland fork is currently available in some distributions as user contributed packages
-
-### Alpine
-
-https://pkgs.alpinelinux.org/packages?name=rofi-wayland
-
-### ArchLinux
-
-https://archlinux.org/packages/extra/x86_64/rofi-wayland
+```bash
+    apt install rofi
+```
 
 ### Fedora
 
-https://packages.fedoraproject.org/pkgs/rofi-wayland/rofi-wayland/
+```bash
+    dnf install rofi
+```
+
+### ArchLinux
+
+```bash
+    pacman -S rofi
+```
 
 ### Gentoo
 
-`gui-apps/rofi-wayland` exists in the [GURU](https://wiki.gentoo.org/wiki/Project:GURU/Information_for_End_Users) overlay.
+An ebuild is available, `x11-misc/rofi`. It's up to date, but you may need to
+enable ~arch to get the latest release:
 
-https://gitweb.gentoo.org/repo/proj/guru.git/tree/gui-apps/rofi-wayland
+```bash
+    echo 'x11-misc/rofi ~amd64' >> /etc/portage/package.accept_keywords
+```
 
-### NixOS
+for amd64 or:
 
-rofi-wayland is integrated in nixpkgs master ([PR](https://github.com/NixOS/nixpkgs/pull/150169))
+```bash
+    echo 'x11-misc/rofi ~x86' >> /etc/portage/package.accept_keywords
+```
+
+for i386.
+
+To install it, simply issue `emerge rofi`.
 
 ### openSUSE
 
-rofi-wayland is normally integrated in Factory/Tumbleweed as the package `rofi-wayland`.
+On both openSUSE Leap and openSUSE Tumbleweed rofi can be installed using:
+
+```bash
+    sudo zypper install rofi
+```
+
+### FreeBSD
+
+```bash
+    sudo pkg install rofi
+```
+
+### macOS
+
+On macOS rofi can be installed via [MacPorts](https://www.macports.org):
+
+```bash
+    sudo port install rofi
+```
+
+[master-install]: https://github.com/DaveDavenport/rofi/blob/master/INSTALL.md#install-a-checkout-from-git
