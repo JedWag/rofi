@@ -145,14 +145,13 @@ Below is a list of the different modes:
 
 ## Wayland support
 
-
 ### Build
 
-Please follow the [meson build instructions](INSTALL.md#meson) to build this fork, as autotools builds are not yet supported.
+Please follow the [build instructions](INSTALL.md) to build rofi.
 
 Wayland support is enabled by default, along with X11/xcb.
 
-rofi can also be built _without_ XCB:
+rofi can also be built *without* XCB:
 
     meson build -Dxcb=disabled
 
@@ -168,11 +167,11 @@ To force the use of the xcb backend (if enabled during build), the `-x11` option
 
 Due to the different architecture and available APIs in Wayland mode, some original rofi features are difficult or impossible to replicate
 
-  * `-normal-window` flag. Though it is also considered as a toy/deprecated feature in Upstream rofi. Not impossible but would require some work.
-  * `-monitor -n` for fine-grained selection of monitor to display rofi on
-  * some window locations parameters work partially, `x-offset` and `y-offset` are only working from screen edges
-  * fake transparency
-  * window mode on KWin which implements different protocols than the wlr familiy
+- `-normal-window` flag. Though it is also considered as a toy/deprecated feature in Upstream rofi. Not impossible but would require some work.
+- `-monitor -n` for fine-grained selection of monitor to display rofi on
+- some window locations parameters work partially, `x-offset` and `y-offset` are only working from screen edges
+- fake transparency
+- window mode on KWin which implements different protocols than the wlr familiy
 
 ## Manpage
 
