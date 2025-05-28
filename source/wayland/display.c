@@ -63,9 +63,9 @@
 #ifdef HAVE_WAYLAND_CURSOR_SHAPE
 #include "cursor-shape-v1-protocol.h"
 #endif
+#include "keyboard-shortcuts-inhibit-unstable-v1-protocol.h"
 #include "primary-selection-unstable-v1-protocol.h"
 #include "wlr-layer-shell-unstable-v1-protocol.h"
-#include "keyboard-shortcuts-inhibit-unstable-v1-protocol.h"
 
 #define wayland_output_get_dpi(output, scale, dimension)                       \
   ((output)->current.physical_##dimension > 0 && (scale) > 0                   \
@@ -152,8 +152,7 @@ static void wayland_buffer_release(void *data, struct wl_buffer *buffer) {
 }
 
 static const struct wl_buffer_listener wayland_buffer_listener = {
-    wayland_buffer_release
-};
+    wayland_buffer_release};
 
 wayland_buffer_pool *display_buffer_pool_new(gint width, gint height) {
   struct wl_shm_pool *wl_pool;
@@ -864,11 +863,9 @@ static void wayland_pointer_axis_discrete(void *data,
 }
 
 #ifdef WL_POINTER_AXIS_VALUE120_SINCE_VERSION
-static void wayland_pointer_axis120(void *data,
-                      struct wl_pointer *wl_pointer,
-                      enum wl_pointer_axis  axis,
-                      int32_t value120)
-{
+static void wayland_pointer_axis120(void *data, struct wl_pointer *wl_pointer,
+                                    enum wl_pointer_axis axis,
+                                    int32_t value120) {
   wayland_seat *self = data;
 
   switch (axis) {
@@ -929,8 +926,9 @@ static gboolean clipboard_read_glib_callback(GIOChannel *channel,
   struct clipboard_read_info *info = opaque;
   gsize read;
 
-  GIOStatus status = g_io_channel_read_chars(channel, info->buffer + info->size,
-                                             CLIPBOARD_READ_INCREMENT, &read, NULL);
+  GIOStatus status =
+      g_io_channel_read_chars(channel, info->buffer + info->size,
+                              CLIPBOARD_READ_INCREMENT, &read, NULL);
   switch (status) {
   case G_IO_STATUS_AGAIN:
     return TRUE;
@@ -953,7 +951,7 @@ static gboolean clipboard_read_glib_callback(GIOChannel *channel,
     info->buffer[info->size] = '\0';
     if (status == G_IO_STATUS_EOF) {
       info->callback(info->buffer, info->user_data);
-    } else {  // G_IO_STATUS_ERROR
+    } else { // G_IO_STATUS_ERROR
       g_warning("Could not read data from clipboard");
       g_free(info->buffer);
     }
@@ -965,7 +963,8 @@ static gboolean clipboard_read_glib_callback(GIOChannel *channel,
   }
 }
 
-static gboolean clipboard_read_data(int fd, ClipboardCb callback, void *user_data) {
+static gboolean clipboard_read_data(int fd, ClipboardCb callback,
+                                    void *user_data) {
   GIOChannel *channel = g_io_channel_unix_new(fd);
 
   struct clipboard_read_info *info = g_malloc(sizeof *info);
@@ -1016,23 +1015,25 @@ static void data_device_handle_data_offer(void *data,
   wl_data_offer_add_listener(offer, &data_offer_listener, NULL);
 }
 
-static void data_device_handle_enter(void *data, struct wl_data_device *wl_data_device,
-                                     uint32_t serial, struct wl_surface *surface,
-                                     wl_fixed_t x, wl_fixed_t y,
-                                     struct wl_data_offer *id) {
-}
+static void data_device_handle_enter(void *data,
+                                     struct wl_data_device *wl_data_device,
+                                     uint32_t serial,
+                                     struct wl_surface *surface, wl_fixed_t x,
+                                     wl_fixed_t y, struct wl_data_offer *id) {}
 
-static void data_device_handle_leave(void *data, struct wl_data_device *wl_data_device) {
-}
+static void data_device_handle_leave(void *data,
+                                     struct wl_data_device *wl_data_device) {}
 
-static void data_device_handle_motion(void *data, struct wl_data_device *wl_data_device,
-                                      uint32_t time, wl_fixed_t x, wl_fixed_t y) {
-}
+static void data_device_handle_motion(void *data,
+                                      struct wl_data_device *wl_data_device,
+                                      uint32_t time, wl_fixed_t x,
+                                      wl_fixed_t y) {}
 
-static void data_device_handle_drop(void *data, struct wl_data_device *wl_data_device) {
-}
+static void data_device_handle_drop(void *data,
+                                    struct wl_data_device *wl_data_device) {}
 
-static void clipboard_handle_selection(enum clipboard_type cb_type, void *offer) {
+static void clipboard_handle_selection(enum clipboard_type cb_type,
+                                       void *offer) {
   clipboard_data *clipboard = &wayland->clipboards[cb_type];
 
   if (clipboard->offer != NULL) {
@@ -1043,7 +1044,6 @@ static void clipboard_handle_selection(enum clipboard_type cb_type, void *offer)
     }
   }
   clipboard->offer = offer;
-
 }
 
 static void data_device_handle_selection(void *data,
@@ -1236,9 +1236,8 @@ static void wayland_output_geometry(void *data, struct wl_output *output,
 static void wayland_output_mode(void *data, struct wl_output *output,
                                 enum wl_output_mode flags, int32_t width,
                                 int32_t height, int32_t refresh) {
-  wayland_output *self = data;
-
   if (flags & WL_OUTPUT_MODE_CURRENT) {
+    wayland_output *self = data;
     self->pending.width = width;
     self->pending.height = height;
   }
@@ -1295,19 +1294,22 @@ static void wayland_registry_handle_global(void *data,
     wayland->layer_shell =
         wl_registry_bind(registry, name, &zwlr_layer_shell_v1_interface,
                          MIN(version, WL_LAYER_SHELL_INTERFACE_VERSION));
-  } else if (g_strcmp0(interface, zwp_keyboard_shortcuts_inhibit_manager_v1_interface.name) == 0) {
+  } else if (g_strcmp0(
+                 interface,
+                 zwp_keyboard_shortcuts_inhibit_manager_v1_interface.name) ==
+             0) {
     wayland->global_names[WAYLAND_GLOBAL_KEYBOARD_SHORTCUTS_INHIBITOR] = name;
-    wayland->kb_shortcuts_inhibit_manager =
-        wl_registry_bind(registry, name, &zwp_keyboard_shortcuts_inhibit_manager_v1_interface,
-                         MIN(version, WL_KEYBOARD_SHORTCUTS_INHIBITOR_INTERFACE_VERSION));
+    wayland->kb_shortcuts_inhibit_manager = wl_registry_bind(
+        registry, name, &zwp_keyboard_shortcuts_inhibit_manager_v1_interface,
+        MIN(version, WL_KEYBOARD_SHORTCUTS_INHIBITOR_INTERFACE_VERSION));
   } else if (g_strcmp0(interface, wl_shm_interface.name) == 0) {
     wayland->global_names[WAYLAND_GLOBAL_SHM] = name;
     wayland->shm = wl_registry_bind(registry, name, &wl_shm_interface,
                                     MIN(version, WL_SHM_INTERFACE_VERSION));
   } else if (g_strcmp0(interface, wl_seat_interface.name) == 0) {
     if (version < WL_SEAT_INTERFACE_MIN_VERSION) {
-      g_error("Minimum version of wayland seat interface is %u, got %u", WL_SEAT_INTERFACE_MIN_VERSION,
-              version);
+      g_error("Minimum version of wayland seat interface is %u, got %u",
+              WL_SEAT_INTERFACE_MIN_VERSION, version);
       return;
     }
     version = MIN(version, WL_SEAT_INTERFACE_MAX_VERSION);
@@ -1321,8 +1323,8 @@ static void wayland_registry_handle_global(void *data,
     wl_seat_add_listener(seat->seat, &wayland_seat_listener, seat);
   } else if (g_strcmp0(interface, wl_output_interface.name) == 0) {
     if (version < WL_OUTPUT_INTERFACE_MIN_VERSION) {
-      g_error("Minimum version of wayland output interface is %u, got %u", WL_OUTPUT_INTERFACE_MIN_VERSION,
-              version);
+      g_error("Minimum version of wayland output interface is %u, got %u",
+              WL_OUTPUT_INTERFACE_MIN_VERSION, version);
       return;
     }
     version = MIN(version, WL_OUTPUT_INTERFACE_MAX_VERSION);
@@ -1382,7 +1384,8 @@ static void wayland_registry_handle_global_remove(void *data,
       wayland->layer_shell = NULL;
       break;
     case WAYLAND_GLOBAL_KEYBOARD_SHORTCUTS_INHIBITOR:
-      zwp_keyboard_shortcuts_inhibit_manager_v1_destroy(wayland->kb_shortcuts_inhibit_manager);
+      zwp_keyboard_shortcuts_inhibit_manager_v1_destroy(
+          wayland->kb_shortcuts_inhibit_manager);
       wayland->kb_shortcuts_inhibit_manager = NULL;
       break;
     case WAYLAND_GLOBAL_SHM:
@@ -1582,10 +1585,13 @@ static gboolean wayland_display_setup(GMainLoop *main_loop,
 static gboolean wayland_display_late_setup(void) {
   wayland_output *output = wayland_output_by_name(config.monitor);
 
+  struct wl_output *wlo = NULL;
+  if (output != NULL) {
+    wlo = output->output;
+  }
   wayland->surface = wl_compositor_create_surface(wayland->compositor);
   wayland->wlr_surface = zwlr_layer_shell_v1_get_layer_surface(
-      wayland->layer_shell, wayland->surface,
-      (output != NULL ? output->output : NULL),
+      wayland->layer_shell, wayland->surface, wlo,
       ZWLR_LAYER_SHELL_V1_LAYER_OVERLAY, "rofi");
 
   // Set size zero and anchor on all corners to get the usable screen size
@@ -1608,8 +1614,8 @@ static gboolean wayland_display_late_setup(void) {
     while (g_hash_table_iter_next(&iter, NULL, (gpointer *)&seat)) {
       // we don't need to keep track of these, they will get inactive when the
       // surface is destroyed
-      zwp_keyboard_shortcuts_inhibit_manager_v1_inhibit_shortcuts(wayland->kb_shortcuts_inhibit_manager,
-                                                                  wayland->surface, seat->seat);
+      zwp_keyboard_shortcuts_inhibit_manager_v1_inhibit_shortcuts(
+          wayland->kb_shortcuts_inhibit_manager, wayland->surface, seat->seat);
     }
   }
 
@@ -1774,7 +1780,8 @@ static const struct _view_proxy *wayland_display_view_proxy(void) {
 
 static guint wayland_display_scale(void) { return wayland->scale; }
 
-static void wayland_get_clipboard_data(int cb_type, ClipboardCb callback, void *user_data) {
+static void wayland_get_clipboard_data(int cb_type, ClipboardCb callback,
+                                       void *user_data) {
   clipboard_data *clipboard = &wayland->clipboards[cb_type];
 
   if (clipboard->offer == NULL) {
@@ -1789,7 +1796,8 @@ static void wayland_get_clipboard_data(int cb_type, ClipboardCb callback, void *
   if (cb_type == CLIPBOARD_DEFAULT) {
     wl_data_offer_receive(clipboard->offer, "text/plain", fds[1]);
   } else {
-    zwp_primary_selection_offer_v1_receive(clipboard->offer, "text/plain", fds[1]);
+    zwp_primary_selection_offer_v1_receive(clipboard->offer, "text/plain",
+                                           fds[1]);
   }
   close(fds[1]);
 
