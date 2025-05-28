@@ -74,11 +74,12 @@ assert(xcb_enabled or wayland_enabled,
 
 libgwater = subproject('libgwater')
 
+xcb = dependency('xcb', required: xcb_enabled )
 # XCB stuff
 if xcb_enabled
     deps += [
         libgwater.get_variable('libgwater_xcb'),
-        dependency('xcb'),
+        xcb,
         dependency('xcb-aux'),
         dependency('xcb-xkb'),
         dependency('xkbcommon-x11'),

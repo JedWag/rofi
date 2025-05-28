@@ -149,6 +149,18 @@ f.e.
     meson setup build --prefix /usr
 ```
 
+### Disable x11 support
+
+```bash
+meson setup build -Dxcb=disabled
+```
+
+### Disable wayland support
+
+```bash
+meson setup build -Dwayland=disabled
+```
+
 ### Install locally
 
 or to install locally:

@@ -35,6 +35,9 @@ the foundations, and therefore Sean Pringle deserves most of the credit for
 this tool. **Rofi** (renamed, as it lost the *simple* property) has been
 extended with extra features, like an application launcher and ssh-launcher,
 and can act as a drop-in dmenu replacement, making it a very versatile tool.
+Thanks to the great work of [lbonn](https://github.com/lbonn), who added
+Wayland support in his fork and maintained it for years, **Rofi**
+now officially supports Wayland (since 2025).
 
 **Rofi**, like dmenu, will provide the user with a textual list of options
 where one or more can be selected.
@@ -78,7 +81,7 @@ Its main features are:
 
 - Type to filter
   - Tokenized: type any word in any order to filter
-  - Case insensitive (togglable)
+  - Case insensitive (togglable) or SmartCase
   - Support for fuzzy-, regex-, prefix-, and glob-matching
 
 - UTF-8 enabled
@@ -93,6 +96,7 @@ Its main features are:
   - Window switcher mode
     - EWMH compatible WM
     - Work arounds for i3,bspwm
+    - Wayland based WMs that follow the wlr family
 
   - Application launcher
 
@@ -171,7 +175,7 @@ Due to the different architecture and available APIs in Wayland mode, some origi
 - `-monitor -n` for fine-grained selection of monitor to display rofi on
 - some window locations parameters work partially, `x-offset` and `y-offset` are only working from screen edges
 - fake transparency
-- window mode on KWin which implements different protocols than the wlr familiy
+- window mode on KWin which implements different protocols than the wlr family
 
 ## Manpage
 
