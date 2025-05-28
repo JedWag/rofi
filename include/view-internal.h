@@ -190,7 +190,6 @@ typedef struct _view_proxy {
   xcb_window_t (*get_window)(void);
 
   void (*get_current_monitor)(int *width, int *height);
-  void (*capture_screenshot)(void);
 
   void (*set_size)(struct RofiViewState *state, gint width, gint height);
   void (*get_size)(struct RofiViewState *state, gint *width, gint *height);

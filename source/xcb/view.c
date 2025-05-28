@@ -146,57 +146,6 @@ static void xcb_rofi_view_get_current_monitor(int *width, int *height) {
 }
 
 /**
- * Stores a screenshot of Rofi at that point in time.
- */
-static void xcb_rofi_view_capture_screenshot(void) {
-  const char *outp = g_getenv("ROFI_PNG_OUTPUT");
-  if (XcbState.edit_surf == NULL) {
-    // Nothing to store.
-    g_warning("There is no rofi surface to store");
-    return;
-  }
-  const char *xdg_pict_dir = g_get_user_special_dir(G_USER_DIRECTORY_PICTURES);
-  if (outp == NULL && xdg_pict_dir == NULL) {
-    g_warning("XDG user picture directory or ROFI_PNG_OUTPUT is not set. "
-              "Cannot store screenshot.");
-    return;
-  }
-  // Get current time.
-  GDateTime *now = g_date_time_new_now_local();
-  // Format filename.
-  char *timestmp = g_date_time_format(now, "rofi-%Y-%m-%d-%H%M");
-  char *filename = g_strdup_printf("%s-%05d.png", timestmp, 0);
-  // Build full path
-  char *fpath = NULL;
-  if (outp == NULL) {
-    int index = 0;
-    fpath = g_build_filename(xdg_pict_dir, filename, NULL);
-    while (g_file_test(fpath, G_FILE_TEST_EXISTS) && index < 99999) {
-      g_free(fpath);
-      g_free(filename);
-      // Try the next index.
-      index++;
-      // Format filename.
-      filename = g_strdup_printf("%s-%05d.png", timestmp, index);
-      // Build full path
-      fpath = g_build_filename(xdg_pict_dir, filename, NULL);
-    }
-  } else {
-    fpath = g_strdup(outp);
-  }
-  fprintf(stderr, color_green "Storing screenshot %s\n" color_reset, fpath);
-  cairo_status_t status = cairo_surface_write_to_png(XcbState.edit_surf, fpath);
-  if (status != CAIRO_STATUS_SUCCESS) {
-    g_warning("Failed to produce screenshot '%s', got error: '%s'", fpath,
-              cairo_status_to_string(status));
-  }
-  g_free(fpath);
-  g_free(filename);
-  g_free(timestmp);
-  g_date_time_unref(now);
-}
-
-/**
  * Code used for benchmarking drawing the gui, this will keep updating the UI as
  * fast as possible.
  */
@@ -1023,7 +972,6 @@ static view_proxy view_ = {
     .__create_window = xcb___create_window,
     .get_window = xcb_rofi_view_get_window,
     .get_current_monitor = xcb_rofi_view_get_current_monitor,
-    .capture_screenshot = xcb_rofi_view_capture_screenshot,
 
     .set_size = NULL,
     .get_size = NULL,

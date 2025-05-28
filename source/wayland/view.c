@@ -106,11 +106,6 @@ static void wayland_rofi_view_get_current_monitor(int *width, int *height) {
   }
 }
 
-/**
- * Stores a screenshot of Rofi at that point in time.
- */
-static void wayland_rofi_view_capture_screenshot(void) {}
-
 static gboolean wayland_rofi_view_repaint(G_GNUC_UNUSED void *data) {
   RofiViewState *state = rofi_view_get_active();
   if (state) {
@@ -428,7 +423,6 @@ static view_proxy view_ = {
     .__create_window = wayland___create_window,
     .get_window = NULL,
     .get_current_monitor = wayland_rofi_view_get_current_monitor,
-    .capture_screenshot = wayland_rofi_view_capture_screenshot,
 
     .set_size = wayland_rofi_view_set_size,
     .get_size = wayland_rofi_view_get_size,
