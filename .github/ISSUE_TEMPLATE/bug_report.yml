@@ -35,7 +35,7 @@ body:
     attributes:
       label: "Configuration"
       description: |
-        Please use https://gist.github.com and include output of `rofi -dump-config`.
+        Please use https://gist.github.com and include output of `rofi -info` and `rofi -dump-config`.
         n/a is not a valid config.
       placeholder: "Gist URL"
     validations:

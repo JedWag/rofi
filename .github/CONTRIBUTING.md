@@ -54,7 +54,6 @@ When adding comments to an issue make sure:
   if there is an update it will be linked/mentioned in the issue, otherwise
   there is no update.
 
-
 Issue high-jacking, e.g. adding a request/issue to an existing issue, is very
 disruptive.
 Please create a new issue, if it is similar it will be marked duplicate.
@@ -69,7 +68,7 @@ Before creating a feature request:
 
 When reporting a feature request include the following information:
 
-* Rofi version. (rofi -v)
+* Rofi version and other information. (rofi -info)
 * A clear description of the feature you want added.
 * A use-case for the feature.
 
