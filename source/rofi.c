@@ -442,9 +442,16 @@ static void help(G_GNUC_UNUSED int argc, char **argv, const gboolean compact) {
   printf("\t• imdkit  %sdisabled%s\n", is_term ? color_red : "",
          is_term ? color_reset : "");
 #endif
-#ifdef ENABLE_WAYLAND
-  printf("\t• wayland %s%s%s\n", is_term ? color_green : "", WAYLAND_VERSION,
+#ifdef ENABLE_XCB
+  printf("\t• xcb     %senabled%s\n", is_term ? color_green : "",
          is_term ? color_reset : "");
+#else
+  printf("\t• xcb     %sdisabled%s\n", is_term ? color_red : "",
+         is_term ? color_reset : "");
+#endif
+#ifdef ENABLE_WAYLAND
+  printf("\t• wayland %senabled%s (%s)\n", is_term ? color_green : "",
+         is_term ? color_reset : "", WAYLAND_VERSION);
 #else
   printf("\t• wayland %sdisabled%s\n", is_term ? color_red : "",
          is_term ? color_reset : "");
