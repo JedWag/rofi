@@ -46,6 +46,7 @@ runs:
       shell: bash
     - id: doxy
       run: git clone https://github.com/davatorium/doxy-coverage
+      shell: bash
     - id: apt-wayland
       if: ${{ inputs.wayland  == 'true' }}
       run: |
