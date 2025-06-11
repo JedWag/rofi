@@ -237,8 +237,6 @@ static void wayland_surface_protocol_enter(void *data,
                                            struct wl_output *wl_output) {
   wayland_output *output;
 
-  g_debug("Surface enter");
-
   output = g_hash_table_lookup(wayland->outputs, wl_output);
   if (output == NULL) {
     return;
@@ -1623,34 +1621,9 @@ static gboolean wayland_display_late_setup(void) {
 
   wl_surface_add_listener(wayland->surface, &wayland_surface_interface,
                           wayland);
-
   wl_surface_commit(wayland->surface);
   wl_display_roundtrip(wayland->display);
   wayland_frame_callback(wayland, wayland->frame_cb, 0);
-
-  // display one extra transparent frame to correctly detect scale and DPI
-
-  rofi_view_pool_refresh();
-
-  int width, height;
-  display_get_surface_dimensions(&width, &height);
-
-  wayland_buffer_pool *pool = display_buffer_pool_new(width, height);
-  cairo_surface_t *cairo_surface = display_buffer_pool_get_next_buffer(pool);
-  cairo_t *d = cairo_create(cairo_surface);
-  cairo_set_operator(d, CAIRO_OPERATOR_SOURCE);
-  cairo_set_source_rgba(d, 0, 0, 0, 0.0);
-  cairo_paint(d);
-  cairo_destroy(d);
-
-  display_surface_commit(cairo_surface);
-
-  wl_surface_commit(wayland->surface);
-
-  wl_display_roundtrip(wayland->display);
-  wayland_frame_callback(wayland, wayland->frame_cb, 0);
-
-  display_buffer_pool_free(pool);
 
   return TRUE;
 }
